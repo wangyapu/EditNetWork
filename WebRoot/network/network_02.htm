@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://bl.ocks.org/benzguo/raw/4370043/ -->
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<title>Force Editor</title>
+<!-- <script src="d3.v2.min.js"></script> -->
+<!-- <script src="jquery-1.8.3.min.js"></script> -->
+<link rel="stylesheet" href="../resources/js/easydialog/easydialog.css" type="text/css" />
+	<script src="../resources/js/jsCodeFormat/codemirror.js"></script>
+    <script src="../resources/js/jsCodeFormat/javascript.js"></script>
+
+    <link href="../resources/js/jsCodeFormat/codemirror.css" rel="stylesheet">
+    <link href="../resources/js/jsCodeFormat/monokai.css" rel="stylesheet">
+
+<style>
+
+body {
+  font: 13px sans-serif;
+  position: relative;
+  /**width: 960px;
+  height: 500px;**/
+}
+
+.easyDialog_wrapper .easyDialog_title {
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+	color: #666;
+	padding: 0 10px;
+	font-size: 14px;
+	border-bottom: 1px solid #e5e5e5;
+	background: #f7f7f7;
+	border-radius: 4px 4px 0 0;
+	margin: 0px;
+}
+
+.node {
+  fill: #000;
+  cursor: crosshair;
+}
+
+.node_selected {
+  fill: #ff7f0e;
+  stroke: #ff7f0e;
+}
+
+.drag_line {
+  stroke: #999;
+  stroke-width: 2;
+  /**stroke-width: 5;**/
+  pointer-events: none;
+}
+
+.drag_line_hidden {
+  stroke: #999;
+  stroke-width: 0;
+  pointer-events: none;
+}
+
+.drag_line{
+  stroke: #999;
+  pointer-events: none;
+}
+
+.link {
+  stroke: #999;
+  /**stroke-width: 5;**/
+  cursor: crosshair;
+}
+
+.link_selected {
+  stroke: #ff7f0e;
+}
+
+.tool_code{
+	/*border:1px solid #b0b0b0;*/
+	position: relative;
+	text-align: right;
+	vertical-align: middle;
+	border-bottom: 1px solid #b0b0b0;;
+}
+
+.tool_code button{
+	text-align: right;
+}
+
+.CodeMirror {
+	/*border: 1px solid #b0b0b0;*/
+	height: 470px;
+}
+
+#code_chart_view{
+	position: absolute;
+	left: 50px;
+	top:50px;
+	width: 1000px;
+	height:500px;
+	border:1px solid #b0b0b0;
+}
+
+#codeView{
+	position: absolute;
+	/*border:1px solid #b0b0b0;*/
+	left:0;
+	top:0;
+	width: 100%;
+	height:100%;
+	z-index: -1;
+	
+	background: #fff;
+}
+
+#chartView{
+	position: absolute;
+	/*border:1px solid #b0b0b0;*/
+	left:0;
+	top:0;
+	width: 100%;
+	height:100%;
+	background: #fff;
+}
+
+.easyDialog_wrapper .btn_highlight, .easyDialog_wrapper .btn_normal{
+	margin-bottom: 0px;
+}
+.easyDialog_wrapper .easyDialog_footer {
+	padding: 10px 10px;
+	border-top: 1px solid #b0b0b0;
+}
+
+</style>
+
+</head>
+
+<body>    
+ 
+  <div id='code_chart_view'>
+  	  <div id="codeView">
+	  	  <div class="tool_code">
+		  	<button id="alert">刷新</button>
+		  </div>
+		  <textarea id="code" name="code"></textarea>
+	  </div>
+
+	 <div id="chartView">
+	 	<div class="tool_code">
+	 		<button id="showImage">显示图像</button>
+		  	<button id="getData">数据视图</button>
+		  	<button id="huatu">重置</button>
+		  </div>
+	 	<div id="chart"></div>
+	 </div>
+	  
+  </div>
+  
+  <script src="../resources/js/d3.v2.js"></script>
+  <script src="../resources/js/jquery-1.7.1.min.js"></script>
+  <script src="../resources/js/jsCodeFormat/jsonFormat.js"></script>
+<!--  <script src="../resources/js/json.js"></script>-->
+  <script src="../resources/js/jsCodeFormat/codeLineFormat.js"></script>
+  <script type="text/javascript" src="../resources/js/easydialog/easydialog.min.js"></script>
+<!--  <script src="../resources/js/jsonFormat.js"></script>-->
+  <script src="network.js"></script>
+  
+  <script type="text/javascript">
+
+  //var editor = null;
+
+  $(document).ready(function(){
+	$("#getData").click(function(){
+		var nl = getNodeAndLink();
+		$("#code").text("option = "+JsonUti.convertToString(nl));
+		//$("#code").text("option = "+nl.toJSONString());
+		cvtToCode();
+
+		//切换视图
+		$("#codeView").css("z-index","1");
+		$("#chartView").css("z-index","-1");
+	});
+
+	$("#showImage").click(function(){
+		if($(this).text()=="显示图像"){
+			image_show_flag = true;//显示图像
+			$(this).text("隐藏图像");
+		}
+		else{
+			image_show_flag = false;//不显示图像
+			$(this).text("显示图像");
+		}
+		redraw();
+	});
+
+	$("#alert").click(function(){
+		var newdata = getCodeData();
+		multiDraw(newdata);
+		//切换视图
+		$("#codeView").css("z-index","-1");
+		$("#chartView").css("z-index","1");
+	});
+
+	$("#huatu").click(function(){
+		var friend_net_origin = {
+		  		"nodes":[
+		           { "name" : "待命名","special":"false","r":16,"color":"1","catagory":"默认"}],
+		         "edges":[]};
+		drawNetwork(friend_net_origin);
+	});
+	
+  });
+
+  </script>
+
+</body>
+
+</html>

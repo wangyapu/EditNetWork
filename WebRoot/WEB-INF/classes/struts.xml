@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+ 
+<struts>
+<constant name="struts.multipart.saveDir" value="d:/temp" />
+<constant name="struts.multipart.maxSize" value="10000000000"/>
+
+<package name="datasource_zyc" extends="struts-default">  
+ 
+   <action name="imgupload" class="com.test.UploadImgAction">
+   	  <param name="savaPath">/resources/headimg</param>
+      <result name="success">/index.jsp</result>
+   </action>
+
+</package> 
+
+</struts>
