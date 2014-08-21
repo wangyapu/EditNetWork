@@ -15,6 +15,31 @@ EditNetWork
 2、增加节点与修改名称
 
  ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/增加节点与修改名称.png)
+ 
+3、修改实体大小颜色与分类
+
+ ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/修改实体大小颜色与分类.png)
+ 
+4、修改后的状态与图例变化
+
+ ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/修改后的状态与图例变化.png)
+ 
+5、点击显示图像——浏览图片——上传头像
+
+ ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/上传头像.png)
+ 
+6、修改连线粗细反应关系强弱
+
+![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/修改连线粗细反应关系强弱.png)
+
+7、网络图统计信息
+
+![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/网络图统计信息.png)
+
+8、简单搭建完成的网络图
+
+![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/搭建完成的简单事例.png)
+
 
 
 
