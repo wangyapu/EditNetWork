@@ -11,6 +11,10 @@ EditNetWork
 1、初始化状态
 
  ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/初始化.jpg)
+ 
+2、增加节点与修改名称
+
+ ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/增加节点与修改名称.png)
 
 
 
