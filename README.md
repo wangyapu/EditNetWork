@@ -32,11 +32,15 @@ EditNetWork
 
 ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/修改连线粗细反应关系强弱.png)
 
-7、网络图统计信息
+7、数据视图：数据的可视化展现与随意编辑你所需要的数据产生新的结果
+
+![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/数据视图.png)
+
+8、网络图统计信息
 
 ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/网络图统计信息.png)
 
-8、简单搭建完成的网络图
+9、简单搭建完成的网络图
 
 ![image](https://github.com/shuiying/EditNetWork/raw/master/readmeimg/搭建完成的简单事例.png)
 
